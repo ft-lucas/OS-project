@@ -1,5 +1,5 @@
 # OS-project
-# Assignment Q1
+# Assignment Q2
 A number of cats and mice inhabit a house. The cats and mice have worked out a deal
 where the mice can steal pieces of the cats’ food, so long as the cats never see the mice
 actually doing so. If the cats see the mice, then the cats must eat the mice (or else lose
