@@ -13,7 +13,10 @@
     }
     return(ar);
 	}
+/*  
+number of process n<=20;
 
+*/
 int main()
 {
     int pid[20];
