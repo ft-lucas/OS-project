@@ -13,16 +13,25 @@
     }
     return(ar);
 	}
+void turnartime(int ar[],int ar2[],int tat[],int n)
+{
+	printf("\n\nCalulating the turn around time for every process");
+	int i;
+for(i=0;i<n;i++)
+    {
+     tat[i]=ar[i]+ar2[i];
+	}
+	return(tat);
+}
 /*  
 number of process n<=20;
-
 */
 int main()
 {
-    int pid[20];
-    int bt[20];
-    int wt[20];
-    int tat[20];
+    int pid[20];  //process id
+    int bt[20];   //burst time
+    int wt[20];   //waiting time
+    int tat[20];  //turn around time
     int n,i,j;
     
     printf("Enter No. of process");
@@ -33,17 +42,15 @@ int main()
     {
         scanf("%d",&pid[i]);
     }
-    printf("Enter the BUrst Time in proper sequence: ");
+    printf("Enter the Burst Time in proper sequence: ");
     for(i=0;i<n;i++)
     {
         scanf("%d",&bt[i]);
     }
     waitingtime(wt,bt,n);
-    printf("\n\nCalulating the turn around time for every process");
-    for(i=0;i<n;i++)
-    {
-     tat[i]=bt[i]+wt[i];
-    }
+    
+	turnartime(wt,bt,tat,n);
+	
  float avgtat=0;
     printf("\nProcess\tBT\tWT\tTAT");
     for(i=0;i<n;i++)
@@ -53,7 +60,7 @@ int main()
      avgtat=avgtat+tat[i];
     }
     avgtat=avgtat/n;
-    printf("\n\nAverage Turn Around Time= %d",avgtat);
+    printf("\n\nAverage Turn Around Time= %f",avgtat);
  
     printf("\n\nSolution using SHORTEST JOB FIRST: ");
     //waitingtime(wt);
@@ -70,23 +77,15 @@ int main()
       bt[j]=temp;
      }
      }
-     for(i=0;i<n;i++){
- printf("%d",bt[i]);
-}
+     
 }
      for(i=0;i<n;i++){
 wt[i]=0;
 }
 
   waitingtime(wt,bt,n);
-     for(i=0;i<n;i++){
- printf("%d",wt[i]);
-}
-printf("\n\nCalulating the turn around time for every process");
-    for(i=0;i<n;i++)
-    {
-     tat[i]=bt[i]+wt[i];
-    }
+     turnartime(wt,bt,tat,n);
+	
     avgtat=0;
     printf("\nProcess\tBT\tWT\tTAT");
     for(i=0;i<n;i++)
