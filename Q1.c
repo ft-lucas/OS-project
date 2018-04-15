@@ -1,3 +1,4 @@
+#inculde<stdio.h>
    void waitingtime(int ar[],int ar2[],int n)
     {
     	int i,j;
@@ -96,4 +97,35 @@ wt[i]=0;
     }
     avgtat=avgtat/n;
     printf("\n\nAverage Turn Around Time= %f",avgtat);
+	
+	printf("\n\nSolution using SHORTEST JOB FIRST, (CPU is idol for 1 unit at starting) ");
+	for(i=0;i<n;i++){
+	wt[i]=0;
+	}
+	
+	printf("\n\nCalulating the waiting time for every process");
+    wt[0]=1;
+	for(i=1;i<n;i++)
+    {
+      wt[i]=0;
+      for(j=0;j<i;j++)
+      {
+       wt[i]=wt[i]+bt[j];
+      }
+    }
+	
+	turnartime(wt,bt,tat,n);
+	
+    avgtat=0;
+    printf("\nProcess\tBT\tWT\tTAT");
+    for(i=0;i<n;i++)
+    {
+    printf("\nP-%d\t%d\t%d\t%d",pid[i],bt[i],wt[i],tat[i]);
+    
+     avgtat=avgtat+tat[i];
+    }
+    avgtat=avgtat/n;
+    printf("\n\nAverage Turn Around Time= %f",avgtat);
+
 }
+
