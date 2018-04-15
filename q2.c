@@ -3,8 +3,8 @@
 #include<pthread.h>
 #include<semaphore.h>
 
-#define N 5;
-#define M 3;
+#define N 5; //number of cats
+#define M 3; //number of mouse
 sem_t cat[5];
 sem_t mice[3];
 pthread_mutex_t mutexcat;
@@ -40,13 +40,12 @@ for(i=0;i<3;i++)
 {
 pthread_join(t2[i],NULL);
 }
-
 }
 
 int func1(int x) // cat
 {
 sem_wait(&cat[x]);
-printf("CAT %d\n");
+printf("CAT %d\n",x);
 pthread_mutex_lock(&mutexmice);
 while(&mutexmice!=1); // try to context switch.
 sem_wait(&mice[x]);
@@ -60,7 +59,7 @@ pthread_mutex_unlock(&mutexmice);
 int func2(int x)
 {
 sem_wait(&mice[x]);
-printf("MICE %d\n ");
+printf("MICE %d\n ",x);
 pthread_mutex_lock(&mutexcat);
 while(&mutexcat!=1);
 sem_wait(&cat[x]);
@@ -70,4 +69,3 @@ printf("MICE is not eating\n");
 sem_post(&cat[x]);
 pthread_mutex_unlock(&mutexcat);
 }
-
